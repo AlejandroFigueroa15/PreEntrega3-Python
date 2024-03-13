@@ -1,0 +1,40 @@
+<!-- HERENCIA ENTRE HTMLS-->
+{% extends "AppMusicy\padre.html" %}
+
+{% load static %}
+
+<!-- TITULO-->
+{% block titulo %}
+Albumes
+{% endblock %}
+
+<!-- DESCRIPCIÓN-->
+{% block descripcion %}
+Arte en conjunto.
+{% endblock %}
+
+<!-- BUSCADOR-->
+{% block buscador %}
+<form action="/AppMusicy/albumRead/" method="GET"> {% csrf_token %}
+
+    <input type="text" name="title" id="title">
+    <input type="submit" value="Buscar">
+    <button>
+        <a href="/AppMusicy/albumCreate/">¿Añadir?</a>
+    </button>
+    
+    <br>
+
+</form>
+
+<p>
+    Resultados para: {{title}}
+</p>
+{% for alboom in album %}
+<p>
+    > {{alboom.artist}} - {{alboom.title}} ({{alboom.year}})
+</p>
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+<!-- HERENCIA ENTRE HTMLS-->
+{% extends "AppMusicy\padre.html" %}
+
+{% load static %}
+
+<!-- TITULO-->
+{% block titulo %}
+Géneros
+{% endblock %}
+
+<!-- DESCRIPCIÓN-->
+{% block descripcion %}
+Formas de arte.
+{% endblock %}
+
+<!-- BUSCADOR-->
+{% block buscador %}
+<form action="/AppMusicy/genreRead/" method="GET"> {% csrf_token %}
+
+    <input type="text" name="name" id="name">
+    <input type="submit" value="Buscar">
+    <button>
+        <a href="/AppMusicy/genreCreate/">¿Añadir?</a>
+    </button>
+    
+    <br>
+
+</form>
+
+<p>
+    Resultados para: {{name}}
+</p>
+{% for genero in genre %}
+<p>
+    > {{genero.name}}
+</p>
+{% endfor %}
+
+
+{% endblock %}
